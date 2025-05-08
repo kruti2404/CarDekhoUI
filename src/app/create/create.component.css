@@ -1,0 +1,150 @@
+/* General form styling */
+.Formcontainer {
+  background: linear-gradient(135deg, #f2f9ff, #e0ecf4);
+  border-radius: 1.2rem;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 2rem auto;
+}
+
+.Formcontainer h2 {
+  padding: 10px;
+  border-radius: 100px;
+  width: 300px;
+  margin-left: 30%;
+  margin-right: 25%;
+}
+.Formcontainer .filter-title {
+  font-weight: bold;
+  color: #1c4b71;
+  font-size: 1.75rem;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Input groups */
+.group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.formcontrols {
+  flex: 1 1 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Labels */
+label {
+  font-weight: 600;
+  color: #1c4b71;
+  margin-bottom: 0.25rem;
+}
+
+/* Inputs and textarea */
+input[type="text"],
+input[type="number"],
+textarea {
+  border: 1px solid #b3cde0;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.8rem;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s ease;
+}
+input:focus,
+textarea:focus {
+  border-color: #3399ff;
+  box-shadow: 0 0 0 3px rgba(51, 153, 255, 0.15);
+}
+
+/* Submit button */
+.submit button {
+  padding: 0.8rem 2rem;
+  background: #1c4b71;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: 0.3s ease;
+  margin-top: 1.5rem;
+}
+.submit button:hover {
+  background: #155a91;
+}
+
+/* Dropdown label and value */
+.select-boxes .mat-mdc-floating-label {
+  color: #1c4b71 !important;
+}
+.select-boxes .mat-mdc-select-value {
+  font-size: 13px;
+  color: #1c4b71;
+}
+
+/* Arrow styling */
+.select-boxes .mat-mdc-select-arrow {
+  color: #1c4b71;
+  transform: scale(1.1);
+}
+
+/* Panel (dropdown) appearance */
+::ng-deep .mat-mdc-select-panel {
+  background: #ffffff;
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  max-height: 180px !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+/* Option styling */
+::ng-deep .mat-mdc-select-panel .mdc-list-item {
+  padding: 8px 16px;
+  min-height: 36px;
+  font-size: 14px;
+  color: #1c4b71;
+  background-color: #f3faff;
+  transition: background-color 0.3s;
+}
+::ng-deep .mat-mdc-select-panel .mdc-list-item:hover {
+  background-color: #cce7ff !important;
+  color: #003366 !important;
+}
+::ng-deep .mat-mdc-select-panel .mdc-list-item--selected {
+  background-color: #3399ff !important;
+  color: #ffffff !important;
+}
+
+/* Active (keyboard focused) or hovered option */
+::ng-deep .mat-mdc-select-panel .mdc-list-item--activated,
+::ng-deep .mat-mdc-select-panel .mdc-list-item:hover {
+  background-color: #cce6ff !important; /* your custom light blue */
+  color: #003366 !important;
+}
+
+/* Selected option */
+::ng-deep .mat-mdc-select-panel .mdc-list-item--selected {
+  background-color: #3399ff !important;
+  color: white !important;
+}
+
+/* Unselected options default background */
+::ng-deep .mat-mdc-select-panel .mdc-list-item {
+  background-color: #e0f0ff;
+  color: #003366;
+}
+
+
+.custom-snackbar {
+  background-color: #4caf50; /* Green background */
+  color: white; /* Text color */
+  font-size: 16px; /* Font size */
+  border-radius: 4px; /* Rounded corners */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for a floating effect */
+}

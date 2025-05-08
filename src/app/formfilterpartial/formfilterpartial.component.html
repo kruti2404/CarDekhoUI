@@ -1,0 +1,115 @@
+<div class="Formcontainer filter-form-container my-4 p-4 rounded shadow-sm">
+  <h2 class="filter-title mb-4">Filters Option</h2>
+  <!-- Filter Form -->
+  <form [formGroup]="form">
+    <div class="row gx-3 gy-3">
+      <!-- Brand -->
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Brands</mat-label>
+          <mat-select formControlName="selectedBrand" multiple>
+            <mat-option *ngFor="let brand of Brands" [value]="brand">{{ brand }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Category -->
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Category</mat-label>
+          <mat-select formControlName="selectedCategory">
+            <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Colours -->
+      <div class="col-md-4">
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-label>Colours</mat-label>
+          <mat-select formControlName="Colours" multiple>
+            <mat-option *ngFor="let colour of ColoursList" [value]="colour">{{ colour }}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Rating -->
+      <div class="col-md-4 d-flex align-items-center">
+        <div class=" w-100">
+          <label class="form-label mb-1">Rating</label>
+          <p-rating class="rating" formControlName="Rating" name="Rating"></p-rating>
+        </div>
+      </div>
+
+      <!-- Price Range -->
+      <div class="col-md-8">
+        <label class="form-label mb-1">Price Range</label>
+        <div id="RangeSlider">
+          <ngx-slider formControlName="Range" [(value)]="value" [(highValue)]="highValue"
+            [options]="options"></ngx-slider>
+        </div>
+      </div>
+
+      <!-- Apply Button -->
+      <div class="col-12 text-end">
+        <button type="button" (click)="applyFilters()">Apply</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+<div>
+  <div class="container my-4">
+    <h2 class="mb-3">Available Vehicles</h2>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="text-center my-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2">Loading vehicle data, please wait...</p>
+    </div>
+
+    <!-- Table Format -->
+    <div *ngIf="!loading && vehicles.length > 0; else noVehicles">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered align-middle shadow-sm">
+          <thead class="table-primary">
+            <tr>
+              <th>Name</th>
+              <th>Brand</th>
+              <th>Category</th>
+              <th>Model Year</th>
+              <th>Price (₹)</th>
+              <th>Rating</th>
+              <th>Colors</th>
+              <th>Quantity</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let v of vehicles">
+              <td class="fw-semibold">{{ v.name }}</td>
+              <td>{{ v.brandName }}</td>
+              <td>{{ v.categoryName }}</td>
+              <td>{{ v.modelYear }}</td>
+              <td>{{ v.price | number: '1.0-0' }}</td>
+              <td>
+                <span *ngFor="let star of [].constructor(v.rating)">⭐</span>
+                <!-- <span *ngFor="let star of [].constructor(5 - v.rating)">☆</span> -->
+              </td>
+              <td>{{ v.coloursNames }}</td>
+              <td>{{ v.quantity }}</td>
+              <td class="small text-muted">{{ v.description | slice:0:100 }}...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- No Vehicles Template -->
+    <ng-template #noVehicles>
+      <p class="text-danger" *ngIf="!loading">No vehicles found.</p>
+    </ng-template>
+  </div>
+</div>

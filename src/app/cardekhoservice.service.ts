@@ -1,0 +1,47 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment.development';
+import { Observable } from 'rxjs';
+
+
+@Injectable({
+  providedIn: 'root'
+})
+
+
+
+export class CardekhoserviceService {
+
+  // Inject HttpClient via the constructor
+  constructor(private http: HttpClient) { }
+
+
+  private ApiUrl = environment.apiurls
+  public get(): Observable<any> {
+    return this.http.get(this.ApiUrl);
+  }
+  public Getdetails(id: number): Observable<any> {
+    return this.http.get(`${this.ApiUrl}/vehicles/GetVehicles/${id}`)
+  }
+
+  public loadData(): Observable<any> {
+    return this.http.get(`${this.ApiUrl}/Home/loadData`);
+  }
+
+  public sendReq(formdata : FormData): Observable<any>{
+    console.log(formdata);
+    return this.http.post(`${this.ApiUrl}/Home/AddVehicle`,formdata);
+  }
+
+  public Filter(category: string, Brand: string[], Colours: string[], Rating: number, MinPrice: number, MaxPrice: number): Observable<any> {
+    let params = new HttpParams()
+      .set("category", category)
+      .set("Rating", Rating.toString())
+      .set("MinPrice", MinPrice.toString())
+      .set("MaxPrice", MaxPrice.toString())
+      .set("Brand", Brand.join(","))
+      .set("Colours", Colours.join(","))
+    return this.http.get(`${this.ApiUrl}/vehicles/Filter`, { params });
+  }
+
+}

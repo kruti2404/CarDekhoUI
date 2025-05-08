@@ -1,0 +1,135 @@
+<div class="Formcontainer filter-form-container my-4 p-4 rounded shadow-sm ">
+    <h2 class="filter-title">Create Vehicles</h2>
+    <!-- Filter Form -->
+    <form [formGroup]="createForm">
+        <div class="group">
+            <div class="col-md-4 formcontrols">
+                <label for="name">Name</label>
+                <input type="text" formControlName="name" />
+                <div *ngIf="createForm.get('name')?.hasError('required') && createForm.get('name')?.touched">
+                    <span class="text-danger small">Name is required!</span>
+                </div>
+            </div>
+            <div class="col-md-4 formcontrols">
+                <label for="description">Description</label>
+                <textarea type="text" formControlName="description"> </textarea>
+                <div
+                    *ngIf="createForm.get('description')?.hasError('required') && createForm.get('description')?.touched">
+                    <span class="text-danger small">Description is required!</span>
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <div class="col-md-4 formcontrols">
+                <label for="modalyear">Modal Year</label>
+                <input type="number" formControlName="modalyear" />
+                <div *ngIf="createForm.get('modalyear')?.invalid && createForm.get('modalyear')?.touched">
+                    <div *ngIf="createForm.get('modalyear')?.hasError('required')">
+                        <span class="text-danger small">Modal Year is required!</span>
+                    </div>
+                    <div *ngIf="createForm.get('modalyear')?.hasError('min')">
+                        <span class="text-danger small">Modal Year has minimum value of 1800!</span>
+                    </div>
+                    <div *ngIf="createForm.get('modalyear')?.hasError('max')">
+                        <span class="text-danger small">Modal Year has maximum value of 2025!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 formcontrols">
+                <label for="price">Price</label>
+                <input type="number" formControlName="price" />
+                <div *ngIf="createForm.get('price')?.invalid && createForm.get('price')?.touched">
+                    <div *ngIf="createForm.get('price')?.hasError('required')">
+                        <span class="text-danger small">Price is required!</span>
+                    </div>
+                    <div *ngIf="createForm.get('price')?.hasError('min')">
+                        <span class="text-danger small">Price has minimum value of 0!</span>
+                    </div>
+                    <div *ngIf="createForm.get('price')?.hasError('max')">
+                        <span class="text-danger small">Price has maximum value of 200000000!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <div class="col-md-4 formcontrols">
+                <label for="rating">Rating</label>
+                <input type="number" formControlName="rating" />
+                <div *ngIf="createForm.get('rating')?.invalid && createForm.get('rating')?.touched">
+                    <div *ngIf="createForm.get('rating')?.hasError('required')">
+                        <span class="text-danger small">Rating is required!</span>
+                    </div>
+                    <div *ngIf="createForm.get('rating')?.hasError('min')">
+                        <span class="text-danger small">Rating has minimum value of 0!</span>
+                    </div>
+                    <div *ngIf="createForm.get('rating')?.hasError('max')">
+                        <span class="text-danger small">Rating has maximum value of 5!</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 formcontrols">
+                <label for="quantity">Available Quantity</label>
+                <input type="number" formControlName="quantity" />
+                <div *ngIf="createForm.get('quantity')?.invalid && createForm.get('quantity')?.touched">
+                    <div *ngIf="createForm.get('quantity')?.hasError('required')">
+                        <span class="text-danger small">Stock Quantity is required!</span>
+                    </div>
+                    <div *ngIf="createForm.get('quantity')?.hasError('min')">
+                        <span class="text-danger small">Stock Quantity has minimum value of 0!</span>
+                    </div>
+                    <div *ngIf="createForm.get('quantity')?.hasError('max')">
+                        <span class="text-danger small">Stock Quantity has maximum value of 5!</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <!--  Dropdown Category  -->
+            <div class="col-md-4 formcontrols">
+                <mat-form-field class="select-boxes" appearance="outline">
+                    <mat-label>Select a Category Name </mat-label>
+                    <mat-select formControlName="selectedCategory">
+                        <mat-option *ngFor="let Category of CategoryList" [value]="Category">{{Category}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div
+                    *ngIf="this.createForm.get('selectedCategory')?.hasError('required') && this.createForm.get('selectedCategory')?.touched">
+                    <span class="text-danger small"> Category Name is required</span>
+                </div>
+            </div>
+            <!--  Dropdown brands  -->
+            <div class="col-md-4 formcontrols">
+                <mat-form-field class="select-boxes" appearance="outline">
+                    <mat-label>Select Brand Name</mat-label>
+                    <mat-select formControlName="selectedBrand">
+                        <mat-option *ngFor="let brands of BrandsList" [value]="brands">{{brands}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <div
+                    *ngIf="this.createForm.get('selectedBrand')?.hasError('required') && this.createForm.get('selectedBrand')?.touched">
+                    <span class="text-danger small"> Brand Name is required</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!--  Dropdown Colours  -->
+        <div class="col-md-4 formcontrols">
+            <mat-form-field class="select-boxes" appearance="outline">
+                <mat-label>Select Colours Name </mat-label>
+                <mat-select formControlName="selectedColours" multiple>
+                    <mat-option *ngFor="let colour of colorsList" [value]="colour">{{colour}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <div
+                *ngIf="this.createForm.get('selectedColours')?.hasError('required') && this.createForm.get('selectedColours')?.touched">
+                <span class="text-danger small"> Colours are required</span>
+            </div>
+        </div>
+        <div class="submit">
+            <button type="submit" (click)="submitForm()">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
