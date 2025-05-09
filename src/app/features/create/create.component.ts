@@ -8,6 +8,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { CardekhoserviceService } from '../../core/services/cardekhoservice.service';
+import { Car } from '../../shared/models/car.module';
 
 @Component({
   standalone: true,
@@ -67,29 +68,26 @@ export class CreateComponent implements OnInit {
 
   submitForm() {
     if (this.createForm.valid) {
-      console.log("The form is submitted");
-      const name = this.createForm.get('name')?.value;
-      const description = this.createForm.get('description')?.value;
-      const modalyear = this.createForm.get('modalyear')?.value;
-      const Price = this.createForm.get('price')?.value;
-      const rating = this.createForm.get('rating')?.value;
-      const quantity = this.createForm.get('quantity')?.value;
-      const colours = this.createForm.get('selectedColours')?.value;
-      const brands = this.createForm.get('selectedBrand')?.value;
-      const categories = this.createForm.get('selectedCategory')?.value;
-
-      console.log(name, " ", rating, " ", description, " ", modalyear, " ", Price, " ", quantity, " ", colours, " ", brands, " ", categories);
-
-      var formdata = new FormData();
-      formdata.append('Name', name);
-      formdata.append('Description', description);
-      formdata.append('ModalYear', modalyear);
-      formdata.append('Price', Price);
-      formdata.append('Rating', rating);
-      formdata.append('Quantity', quantity);
-      formdata.append('Colours', colours);
-      formdata.append('Brand', brands);
-      formdata.append('Category', categories);
+      const car: Car = {
+        name: this.createForm.get('name')?.value,
+        description: this.createForm.get('description')?.value,
+        modalyear: this.createForm.get('modalyear')?.value,
+        price: this.createForm.get('price')?.value,
+        rating: this.createForm.get('rating')?.value,
+        quantity: this.createForm.get('quantity')?.value,
+        brand: this.createForm.get('selectedBrand')?.value,
+        category: this.createForm.get('selectedCategory')?.value,
+        colours: this.createForm.get('selectedColours')?.value
+      };
+      console.log("Prepared car object:", car);
+      const formdata = new FormData();
+      Object.entries(car).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          formdata.append(key, value.join(','));
+        } else {
+          formdata.append(key, value as string);
+        }
+      });
 
 
       console.log("Starting post request");
@@ -97,14 +95,13 @@ export class CreateComponent implements OnInit {
       this.service.sendReq(formdata).subscribe({
         next: (value) => {
           console.log("The data is ", value);
-          // this.messageservice.add({ severity: 'success', summary: 'Success', detail: 'Product added!' });
           this.snackBar.open('Vehicle added ', 'Close', {
             duration: 5000,
             horizontalPosition: 'end',
             verticalPosition: 'top',
             panelClass: ['custom-snackbar']
           });
-          // this.router.navigate(['/Filters']);
+          this.router.navigate(['/Filters']);
         },
         error(err) {
           console.log("Error while executing the post request ", err);
@@ -118,7 +115,7 @@ export class CreateComponent implements OnInit {
 
     } else {
       console.log("Form is invalid");
-      this.createForm.markAllAsTouched(); // shows all validation errors
+      this.createForm.markAllAsTouched(); 
     }
   }
 }

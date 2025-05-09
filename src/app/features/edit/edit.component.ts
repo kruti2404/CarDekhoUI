@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { CardekhoserviceService } from '../../core/services/cardekhoservice.service';
+import { Car } from '../../shared/models/car.module';
 
 @Component({
   standalone: true,
@@ -16,7 +17,7 @@ import { CardekhoserviceService } from '../../core/services/cardekhoservice.serv
 })
 export class EditComponent implements OnInit {
   constructor(private route: ActivatedRoute,
-    private router: Router, private service: CardekhoserviceService, private snackbar : MatSnackBar) { }
+    private router: Router, private service: CardekhoserviceService, private snackbar: MatSnackBar) { }
 
   editform: FormGroup = new FormGroup({
     name: new FormControl(''),
@@ -32,7 +33,7 @@ export class EditComponent implements OnInit {
   colorsList: string[] = [];
   CategoryList: string[] = [];
   BrandsList: string[] = [];
-  Id : string = '';
+  Id: string = '';
   ngOnInit(): void {
 
     this.loadData();
@@ -44,32 +45,28 @@ export class EditComponent implements OnInit {
     console.log("Submitted");
 
     if (this.editform.valid) {
-      console.log("The form is submitted");
-      const name = this.editform.get('name')?.value;
-      const description = this.editform.get('description')?.value;
-      const modalyear = this.editform.get('modalyear')?.value;
-      const Price = this.editform.get('price')?.value;
-      const rating = this.editform.get('rating')?.value;
-      const quantity = this.editform.get('quantity')?.value;
-      const colours = this.editform.get('selectedColours')?.value;
-      const brands = this.editform.get('selectedBrand')?.value;
-      const categories = this.editform.get('selectedCategory')?.value;
+      const car: Car = {
+        name: this.editform.get('name')?.value,
+        description: this.editform.get('description')?.value,
+        modalyear: this.editform.get('modalyear')?.value,
+        price: this.editform.get('price')?.value,
+        rating: this.editform.get('rating')?.value,
+        quantity: this.editform.get('quantity')?.value,
+        brand: this.editform.get('selectedBrand')?.value,
+        category: this.editform.get('selectedCategory')?.value,
+        colours: this.editform.get('selectedColours')?.value
+      };
 
-      console.log(name, " ", rating, " ", description, " ", modalyear, " ", Price, " ", quantity, " ", colours, " ", brands, " ", categories);
-
-      var formdata = new FormData();
-      formdata.append('Id', this.Id)
-      formdata.append('Name', name);
-      formdata.append('Description', description);
-      formdata.append('ModalYear', modalyear);
-      formdata.append('Price', Price);
-      formdata.append('Rating', rating);
-      formdata.append('Quantity', quantity);
-      formdata.append('Colours', colours);
-      formdata.append('Brand', brands);
-      formdata.append('Category', categories);
-      
-      console.log("FormData is , ", formdata);
+      console.log("Prepared car object:", car);
+      const formdata = new FormData();
+      formdata.append("Id", this.Id)
+      Object.entries(car).forEach(([key, value]) => {
+        if (Array.isArray(value)) {
+          formdata.append(key, value.join(','));
+        } else {
+          formdata.append(key, value as string);
+        }
+      });
 
       this.service.sendEditReq(formdata).subscribe({
         next: (value) => {
@@ -124,7 +121,7 @@ export class EditComponent implements OnInit {
 
     this.service.Getdetails(id).subscribe({
       next: (data) => {
-        console.log("The details fetch is ", typeof(data.id));
+        console.log("The details fetch is ", typeof (data.id));
         this.Id = data.id;
 
         this.editform = new FormGroup({
