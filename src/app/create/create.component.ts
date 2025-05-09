@@ -10,6 +10,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
 @Component({
+  standalone: true,
   selector: 'app-create',
   imports: [ReactiveFormsModule, CommonModule, MatFormFieldModule, MatSelectModule, MatSnackBarModule, ToastModule,],
   providers: [MessageService],
@@ -52,7 +53,7 @@ export class CreateComponent implements OnInit {
           this.CategoryList = value.categorylist;
         },
         error: (error: any) => {
-
+          console.log("Error ocured while fetching the list ", error);
         },
         complete() {
           console.log("Completed ");
@@ -97,11 +98,11 @@ export class CreateComponent implements OnInit {
         next: (value) => {
           console.log("The data is ", value);
           // this.messageservice.add({ severity: 'success', summary: 'Success', detail: 'Product added!' });
-          this.snackBar.open('vehicle added ', 'close', {
-            duration:50000,
-             horizontalPosition: 'end',
-             verticalPosition:'top',
-             panelClass:['custom-snackbar']
+          this.snackBar.open('Vehicle added ', 'Close', {
+            duration: 5000,
+            horizontalPosition: 'end',
+            verticalPosition: 'top',
+            panelClass: ['custom-snackbar']
           });
           // this.router.navigate(['/Filters']);
         },

@@ -33,6 +33,10 @@ export class CardekhoserviceService {
     return this.http.post(`${this.ApiUrl}/Home/AddVehicle`,formdata);
   }
 
+  public sendEditReq(formdata : FormData): Observable<any>{
+    console.log(formdata);
+    return this.http.post(`${this.ApiUrl}/Home/Editvehicle`,formdata);
+  }
   public Filter(category: string, Brand: string[], Colours: string[], Rating: number, MinPrice: number, MaxPrice: number): Observable<any> {
     let params = new HttpParams()
       .set("category", category)

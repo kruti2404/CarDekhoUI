@@ -6,6 +6,10 @@
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   max-width: 1000px;
   margin: 2rem auto;
+  font-weight: bold;
+  color: #1c4b71;
+  text-align: left;
+  margin-bottom: 2rem;
 }
 
 .Formcontainer h2 {
@@ -15,13 +19,7 @@
   margin-left: 30%;
   margin-right: 25%;
 }
-.Formcontainer .filter-title {
-  font-weight: bold;
-  color: #1c4b71;
-  font-size: 1.75rem;
-  text-align: center;
-  margin-bottom: 2rem;
-}
+
 
 /* Input groups */
 .group {
@@ -140,11 +138,44 @@ textarea:focus {
   color: #003366;
 }
 
+/* Snackbar surface (background container) */
+::ng-deep .custom-snackbar .mdc-snackbar__surface {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+  border-radius: 8px;
+  color: #000000; /* Black text */
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease-in-out;
+  background: rgba(76, 175, 80, 0.7); /* Slight green with transparency */
+}
 
-.custom-snackbar {
-  background-color: #4caf50; /* Green background */
-  color: white; /* Text color */
-  font-size: 16px; /* Font size */
-  border-radius: 4px; /* Rounded corners */
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Shadow for a floating effect */
+/* Action button (close button) */
+::ng-deep .custom-snackbar .mat-mdc-snack-bar-action {
+  color: #121111 !important;  /* Dark text color */
+  font-weight: bold;
+  font-size: 20px;
+  background-color: transparent !important;  /* Transparent background */
+  border: 2px solid #000000;  /* Black border */
+  border-radius: 4px;  /* Rounded corners */
+  padding: 8px 12px;
+  margin-left: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;  /* Smooth transition for hover effect */
+  align-self: center;  /* Vertically center the button */
+}
+
+/* Action button hover effect */
+::ng-deep .custom-snackbar .mat-mdc-snack-bar-action:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;  /* Slight background on hover */
+  transform: scale(1.05);  /* Slight scaling effect on hover */
+}
+
+/* Snackbar label styling */
+::ng-deep .custom-snackbar .mat-mdc-snack-bar-label {
+  font-weight: bold;
+  font-size: 20px;
 }

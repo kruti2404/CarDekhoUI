@@ -9,6 +9,7 @@ import { FormfilterpartialComponent } from './app/formfilterpartial/formfilterpa
 import { GetVehicleByIdComponent } from './app/get-vehicle-by-id/get-vehicle-by-id.component';
 import { CreateComponent } from './app/create/create.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { EditComponent } from './app/edit/edit.component';
 
 const routes: Routes = [
     { path: "", component: HomeComponent },
@@ -16,6 +17,7 @@ const routes: Routes = [
     { path: 'GetVehicles', component: GetVehicleByIdComponent }, 
     { path: 'Filters', component: FormfilterpartialComponent }, 
     { path: 'create', component: CreateComponent }, 
+    { path: 'Edit/:id', component: EditComponent }, 
 ]
 bootstrapApplication(AppComponent, {
     providers: [

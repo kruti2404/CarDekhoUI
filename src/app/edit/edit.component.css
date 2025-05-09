@@ -1,0 +1,185 @@
+.Formcontainer {
+    background: linear-gradient(135deg, #f8f9fa, #e3f2fd);
+    border: 1px solid #dee2e6;
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .Formcontainer h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #343a40;
+    font-weight: 600;
+  }
+  
+  .group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .formcontrols {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .formcontrols label {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 0.6rem;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus,
+  textarea:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+  
+  mat-form-field.select-boxes {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+  
+  .text-danger {
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
+  }
+  
+  .submit {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    gap: 1.5rem;
+  }
+  
+  .submit button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+    cursor: pointer;
+  }
+  
+  .submit button:hover {
+    background-color: #0056b3;
+  }
+  
+  .submit a {
+    color: white;
+  }
+  
+  @media (max-width: 768px) {
+    .group {
+      flex-direction: column;
+    }
+  
+    .formcontrols {
+      flex: 1 1 100%;
+    }
+  }
+  /* Panel (dropdown) appearance */
+::ng-deep .mat-mdc-select-panel {
+    background: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    max-height: 180px !important;
+    padding-top: 4px;
+    padding-bottom: 4px;
+  }
+  
+  /* Option styling */
+  ::ng-deep .mat-mdc-select-panel .mdc-list-item {
+    padding: 8px 16px;
+    min-height: 36px;
+    font-size: 14px;
+    color: #1c4b71;
+    background-color: #f3faff;
+    transition: background-color 0.3s;
+  }
+  ::ng-deep .mat-mdc-select-panel .mdc-list-item:hover {
+    background-color: #cce7ff !important;
+    color: #003366 !important;
+  }
+  ::ng-deep .mat-mdc-select-panel .mdc-list-item--selected {
+    background-color: #3399ff !important;
+    color: #ffffff !important;
+  }
+  
+  /* Active (keyboard focused) or hovered option */
+  ::ng-deep .mat-mdc-select-panel .mdc-list-item--activated,
+  ::ng-deep .mat-mdc-select-panel .mdc-list-item:hover {
+    background-color: #cce6ff !important; /* your custom light blue */
+    color: #003366 !important;
+  }
+  
+  /* Selected option */
+  ::ng-deep .mat-mdc-select-panel .mdc-list-item--selected {
+    background-color: #3399ff !important;
+    color: white !important;
+  }
+  
+  /* Unselected options default background */
+  ::ng-deep .mat-mdc-select-panel .mdc-list-item {
+    background-color: #e0f0ff;
+    color: #003366;
+  }
+  
+  /* Snackbar surface (background container) */
+  ::ng-deep .custom-snackbar .mdc-snackbar__surface {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    color: #000000; /* Black text */
+    font-family: "Roboto", sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease-in-out;
+    background: rgba(76, 175, 80, 0.7); /* Slight green with transparency */
+  }
+  
+  /* Action button (close button) */
+  ::ng-deep .custom-snackbar .mat-mdc-snack-bar-action {
+    color: #121111 !important;  /* Dark text color */
+    font-weight: bold;
+    font-size: 20px;
+    background-color: transparent !important;  /* Transparent background */
+    border: 2px solid #000000;  /* Black border */
+    border-radius: 4px;  /* Rounded corners */
+    padding: 8px 12px;
+    margin-left: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;  
+    align-self: center;  
+  }
+  
+  /* Action button hover effect */
+  ::ng-deep .custom-snackbar .mat-mdc-snack-bar-action:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;  
+    transform: scale(1.05); 
+  }
+  
+  /* Snackbar label styling */
+  ::ng-deep .custom-snackbar .mat-mdc-snack-bar-label {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  

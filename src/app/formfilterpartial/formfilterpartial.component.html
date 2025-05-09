@@ -85,6 +85,7 @@
               <th>Colors</th>
               <th>Quantity</th>
               <th>Description</th>
+              <th>Edit</th>
             </tr>
           </thead>
           <tbody>
@@ -101,6 +102,10 @@
               <td>{{ v.coloursNames }}</td>
               <td>{{ v.quantity }}</td>
               <td class="small text-muted">{{ v.description | slice:0:100 }}...</td>
+              <td >
+                <a [routerLink]="['/Edit', v.id]" routerLinkActive="router-link-active" >Edit</a> | 
+                <a [routerLink]="['/Details', v.id]" routerLinkActive="router-link-active" >Details</a>
+              </td>
             </tr>
           </tbody>
         </table>

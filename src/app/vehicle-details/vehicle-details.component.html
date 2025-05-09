@@ -1,37 +1,51 @@
-<div class="container my-5">
-    <div class="card shadow-lg border-0 rounded-4 mx-auto" style="max-width: 700px;">
-        <div class="card-body" *ngIf="vehicle; else loading">
-            <h4 class="card-title text-center text-primary fw-bold mb-3">
-                {{ vehicle.name }} <span class="badge bg-secondary">ID: {{ vehicle.id }}</span>
-            </h4>
-
-            <div class="text-center mb-3">
-                <img src="https://images.pexels.com/photos/35967/mini-cooper-auto-model-vehicle.jpg?cs=srgb&dl=pexels-pixabay-35967.jpg&fm=jpg"
-                    alt="Car image" class="img-fluid rounded shadow-sm" style="max-height: 250px; object-fit: cover;" />
-            </div>
-
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"><strong>Description:</strong> {{ vehicle.description }}</li>
-                <li class="list-group-item"><strong>Model Year:</strong> {{ vehicle.modelYear }}</li>
-                <li class="list-group-item"><strong>Price:</strong> ₹{{ vehicle.price | number:'1.0-0' }}</li>
-                <li class="list-group-item">
-                    <strong>Rating:</strong>
-                    <span class="text-warning">★</span> {{ vehicle.rating }}/5
-                </li>
-                <li class="list-group-item"><strong>Category:</strong> {{ vehicle.categoryName }}</li>
-                <li class="list-group-item"><strong>Brand:</strong> {{ vehicle.brandName }}</li>
-                <li class="list-group-item"><strong>Quantity:</strong> {{ vehicle.quantity }}</li>
-                <li class="list-group-item"><strong>Colors:</strong> {{ vehicle.coloursNames }}</li>
+<div class="containers">
+    <div class="card shadow-lg border-0 rounded-4 mx-auto">
+      <div class="card-body" *ngIf="vehicle; else loading">
+        <h4 class="card-title text-center text-primary fw-bold mb-4">
+          {{ vehicle.name | uppercase }}
+          <span class="badge bg-secondary">ID: {{ vehicle.id }}</span>
+        </h4>
+  
+        <div class="row g-4 align-items-center">
+          <!-- Image -->
+          <div class="col-md-5 text-center">
+            <img
+              src="https://images.pexels.com/photos/35967/mini-cooper-auto-model-vehicle.jpg?cs=srgb&dl=pexels-pixabay-35967.jpg&fm=jpg"
+              alt="Car image"
+              class="img-fluid rounded shadow"
+              style="max-height: 250px; object-fit: cover;" />
+          </div>
+  
+          <!-- Details -->
+          <div class="col-md-7">
+            <ul class="list-group list-group-flush custom-list">
+              <li class="list-group-item"><strong>Description:</strong> {{ vehicle.description }}</li>
+              <li class="list-group-item"><strong>Model Year:</strong> {{ vehicle.modelYear | date:'yyyy' }}</li>
+              <li class="list-group-item"><strong>Price:</strong> ₹{{ vehicle.price | number:'1.0-0' }}</li>
+              <li class="list-group-item"><strong>Rating:</strong> <span class="text-warning">★</span> {{ vehicle.rating }}/5</li>
+              <li class="list-group-item"><strong>Category:</strong> {{ vehicle.categoryName }}</li>
+              <li class="list-group-item"><strong>Brand:</strong> {{ vehicle.brandName }}</li>
+              <li class="list-group-item"><strong>Quantity:</strong> {{ vehicle.quantity }}</li>
+              <li class="list-group-item"><strong>Colors:</strong> {{ vehicle.coloursNames }}</li>
             </ul>
+          </div>
         </div>
-
-        <ng-template #loading>
-            <div class="card-body text-center py-5">
-                <div class="spinner-border text-primary mb-3" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
-                <p class="fw-semibold text-muted">Fetching vehicle details...</p>
-            </div>
-        </ng-template>
+      </div>
+  
+      <ng-template #loading>
+        <div class="card-body text-center py-5">
+          <div class="spinner-border text-primary mb-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+          <p class="fw-semibold text-muted">Fetching vehicle details...</p>
+        </div>
+      </ng-template>
+  
+      <div class="back">
+        <button class="btn btn-outline-primary mt-4">
+          <a routerLink="/Filters" style="text-decoration: none; color: inherit;">← Back</a>
+        </button>
+      </div>
     </div>
-</div>
+  </div>
+  
