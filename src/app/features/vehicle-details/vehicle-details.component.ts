@@ -1,7 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { CardekhoserviceService } from '../cardekhoservice.service';
 import { CommonModule } from '@angular/common';
+import { CardekhoserviceService } from '../../core/services/cardekhoservice.service';
+
 @Component({
   standalone: true,
   selector: 'app-vehicle-details',

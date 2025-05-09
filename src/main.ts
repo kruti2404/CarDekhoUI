@@ -1,15 +1,16 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { AppComponent } from './app/app.component';
 import { provideRouter, Routes } from '@angular/router';
-import { VehicleDetailsComponent } from './app/vehicle-details/vehicle-details.component';
-import { importProvidersFrom } from '@angular/core';
+import {  importProvidersFrom } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './app/home/home.component';
-import { FormfilterpartialComponent } from './app/formfilterpartial/formfilterpartial.component';
-import { GetVehicleByIdComponent } from './app/get-vehicle-by-id/get-vehicle-by-id.component';
-import { CreateComponent } from './app/create/create.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { EditComponent } from './app/edit/edit.component';
+import { EditComponent } from './app/features/edit/edit.component';
+import { GetVehicleByIdComponent } from './app/features/get-vehicle-by-id/get-vehicle-by-id.component';
+import { FormfilterpartialComponent } from './app/features/formfilterpartial/formfilterpartial.component';
+import { HomeComponent } from './app/features/home/home.component';
+import { VehicleDetailsComponent } from './app/features/vehicle-details/vehicle-details.component';
+import { CreateComponent } from './app/features/create/create.component';
+
 
 const routes: Routes = [
     { path: "", component: HomeComponent },

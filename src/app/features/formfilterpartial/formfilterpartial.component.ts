@@ -3,14 +3,14 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angul
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { CardekhoserviceService } from '../cardekhoservice.service';
-import { SharedSliderModule } from '../shared/shared-slider.module'; 
 import { CommonModule } from '@angular/common';
 import { RatingModule } from 'primeng/rating';
 import { MatSliderModule } from '@angular/material/slider';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { Options } from 'ng5-slider';
 import { RouterLink } from '@angular/router';
+import { CardekhoserviceService } from '../../core/services/cardekhoservice.service';
+import { SharedSliderModule } from '../../shared/models/shared-slider.module';
+
 
 @Component({
   standalone:true,
