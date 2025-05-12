@@ -1,29 +1,9 @@
 <!-- Sidebar Toggle Button (Hamburger) -->
-<div class="sidebar-opener" (click)="sidebarShow = !sidebarShow">
-  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-list"
-    viewBox="0 0 16 16">
-    <path fill-rule="evenodd"
-      d="M1.5 12a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h12a.5.5 0 0 1 0 1h-12a.5.5 0 0 1-.5-.5zm0-4A.5.5 0 0 1 2 3h12a.5.5 0 0 1 0 1H2a.5.5 0 0 1-.5-.5z" />
-  </svg>
-</div>
-
-<!-- Sidebar -->
-<div class="sidebar-slider" [class.sidebar-slide-in]="sidebarShow">
-  <div class="sidebar-close" (click)="sidebarShow = false">X</div>
-  <div class="sidebar-content">
-    <h2>Sidebar</h2>
-    <a routerLink="/" (click)="sidebarShow = false">Home Page</a>
-    <a routerLink="/GetVehicles" (click)="sidebarShow = false">Search vehicle</a>
-    <a routerLink="/Filters" (click)="sidebarShow = false">All Vehicles</a>
-    <a routerLink="/create" (click)="sidebarShow = false">Create</a>
-    <a (click)="sidebarShow = false">Downloads</a>
-    <a (click)="sidebarShow = false">Contact Us</a>
-  </div>
-</div>
 
 <!-- Main Content -->
 <div class="main-content">
   <app-navabr></app-navabr>
+  <app-sidebar> </app-sidebar>
   <div class="content-area">
     <router-outlet></router-outlet>
   </div>
