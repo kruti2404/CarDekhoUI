@@ -1,0 +1,66 @@
+/* Layout Basics */
+.layout-container {
+  display: flex;
+  height: 100vh;
+}
+
+/* Sidebar Toggle Button */
+.sidebar-opener {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 1001;
+  cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar-slider {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background-color: #D4ECFC;
+  color: black;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.sidebar-slide-in {
+  left: 0;
+}
+
+.sidebar-close {
+  text-align: right;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+/* Sidebar content */
+.sidebar-content a {
+  display: block;
+  color: black;
+  padding: 0.5rem 0;
+  text-decoration: none;
+}
+.sidebar-content a:hover {
+  background-color: #444;
+}
+
+/* Main Content */
+.main-content {
+  margin-left: 0;
+  /* padding: 1rem; */
+  transition: margin-left 0.3s;
+}
+.content-area {
+  margin-top: 60px;
+}
+
+/* Optional: shift content on desktop if sidebar is open */
+@media (min-width: 768px) {
+  .sidebar-slide-in ~ .main-content {
+    margin-left: 250px;
+  }
+}
