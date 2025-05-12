@@ -24,7 +24,7 @@ export class VehicleDetailsComponent implements OnInit{
     }
   }
   fetchVehicleDetails(id: number): void {
-    this.service.Getdetails(id).subscribe(
+    this.service.getVehicleDetails(id).subscribe(
       (data) => {
         this.vehicle = data;
       },

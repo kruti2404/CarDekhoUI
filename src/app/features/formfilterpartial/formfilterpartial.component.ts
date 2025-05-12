@@ -11,6 +11,8 @@ import { RouterLink } from '@angular/router';
 import { CardekhoserviceService } from '../../core/services/cardekhoservice.service';
 import { SharedSliderModule } from '../../shared/models/shared-slider.module';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { Sort, MatSortModule, SortDirection, } from '@Angular/material/sort'
 
 @Component({
   standalone: true,
@@ -21,8 +23,10 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
     MatSelectModule,
     MatFormFieldModule,
     MatSlideToggleModule,
+    MatInputModule,
     RatingModule,
     MatSliderModule,
+    MatSortModule,
     ReactiveFormsModule,
     FormsModule,
     SharedSliderModule,
@@ -44,7 +48,9 @@ export class FormfilterpartialComponent implements OnInit {
   highValue: number = 200000000;
   TotalResult: number = 0;
   PageSize: number = 10;
-  PageNumber: number = 1
+  PageNumber: number = 0;
+  SortColumn: string = '';
+  SortDirection: SortDirection = '';
   options: Options = {
     floor: 200000,
     ceil: 200000000
@@ -59,6 +65,7 @@ export class FormfilterpartialComponent implements OnInit {
       Colours: new FormControl([]),
       Rating: new FormControl(''),
       Range: new FormControl([200000, 200000000]),
+      Search: new FormControl('')
     });
 
     this.loadData();
@@ -71,17 +78,21 @@ export class FormfilterpartialComponent implements OnInit {
     const brands = this.form.get('selectedBrand')?.value ?? [];
     const rating = this.form.get('Rating')?.value ?? '';
     const selectedRange = this.form.get('Range')?.value ?? [200000, 200000000];
-
+    const search = this.form.get('Search')?.value;
+    console.log("The search term is ", search);
     this.services
-      .Filter(
+      .filterVehicles(
         this.selectedCategory ?? '',
         brands,
         colours,
         rating,
         selectedRange[0],
         selectedRange[1],
-        this.PageSize ,
-        this.PageNumber +1,
+        this.PageSize,
+        this.PageNumber + 1,
+        search,
+        this.SortColumn,
+        this.SortDirection
       )
       .subscribe({
         next: (value) => {
@@ -126,7 +137,20 @@ export class FormfilterpartialComponent implements OnInit {
     console.log("Page Number", event.pageIndex);
     console.log("Page Number", event.length);
     this.PageSize = event.pageSize;
-    this.PageNumber= event.pageIndex;
+    this.PageNumber = event.pageIndex;
+    this.loadData();
+  }
+  sortData(event: Sort): void {
+    console.log("Sorting is happening ");
+    console.log("Sort ", event.active);
+    if (this.SortColumn == event.active) {
+      this.SortDirection = this.SortDirection === 'asc' ? 'desc' : 'asc';
+    }
+    else {
+      this.SortDirection = event.direction;
+    }
+    console.log("Sort ", this.SortDirection);
+    this.SortColumn = event.active;
     this.loadData();
   }
 

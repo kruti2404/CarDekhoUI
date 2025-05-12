@@ -44,7 +44,7 @@ export class CreateComponent implements OnInit {
 
   Data() {
 
-    this.service.loadData().subscribe(
+    this.service.loadInitialFilterData().subscribe(
       {
         next: (value: any) => {
           console.log(value);
@@ -92,7 +92,7 @@ export class CreateComponent implements OnInit {
 
       console.log("Starting post request");
 
-      this.service.sendReq(formdata).subscribe({
+      this.service.addVehicle(formdata).subscribe({
         next: (value) => {
           console.log("The data is ", value);
           this.snackBar.open('Vehicle added ', 'Close', {

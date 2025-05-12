@@ -49,7 +49,13 @@
             [options]="options"></ngx-slider>
         </div>
       </div>
-
+      <!-- Searching -->
+      <div class="col-md-12">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>Search</mat-label>
+          <input matInput placeholder="Ex. Suzuki" type="search" value="" formControlName="Search">
+        </mat-form-field>
+      </div>
       <!-- Apply Button -->
       <div class="col-12 text-end">
         <button type="button" (click)="applyFilters()">Apply</button>
@@ -57,15 +63,7 @@
     </div>
   </form>
 
-  <!-- Pagination -->
-<mat-paginator [length]="TotalResult"
-              [pageSize]="PageSize"
-              [pageIndex]="PageNumber"
-              [pageSizeOptions]="[5, 10, 20, 40]"
-              aria-label="Select page"
-              (page)="Pagination($event)"
-              >
-</mat-paginator>
+
 
 </div>
 <div>
@@ -83,15 +81,16 @@
     <!-- Table Format -->
     <div *ngIf="!loading && vehicles.length > 0; else noVehicles">
       <div class="table-responsive">
-        <table class="table table-striped table-bordered align-middle shadow-sm">
+        <table class="table table-striped table-bordered align-middle shadow-sm" matSort
+          (matSortChange)="sortData($event)">
           <thead class="table-primary">
             <tr>
-              <th>Name</th>
+              <th mat-sort-header="name">Name</th>
               <th>Brand</th>
               <th>Category</th>
-              <th>Model Year</th>
-              <th>Price (₹)</th>
-              <th>Rating</th>
+              <th mat-sort-header="modelYear">Model Year</th>
+              <th mat-sort-header="price">Price (₹)</th>
+              <th mat-sort-header="rating">Rating</th>
               <th>Colors</th>
               <th>Quantity</th>
               <th>Description</th>
@@ -112,16 +111,21 @@
               <td>{{ v.coloursNames }}</td>
               <td>{{ v.quantity }}</td>
               <td class="small text-muted">{{ v.description | slice:0:100 }}...</td>
-              <td >
-                <a [routerLink]="['/Edit', v.id]" routerLinkActive="router-link-active" >Edit</a> | 
-                <a [routerLink]="['/Details', v.id]" routerLinkActive="router-link-active" >Details</a>
+              <td>
+                <a [routerLink]="['/Edit', v.id]" routerLinkActive="router-link-active">Edit</a> |
+                <a [routerLink]="['/Details', v.id]" routerLinkActive="router-link-active">Details</a>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
+      <form [formGroup]="form">
+        <!-- Pagination -->
+        <mat-paginator [length]="TotalResult" [pageSize]="PageSize" [pageIndex]="PageNumber"
+          [pageSizeOptions]="[5, 10, 20, 40]" aria-label="Select page" (page)="Pagination($event)">
+        </mat-paginator>
+      </form>
     </div>
-
     <!-- No Vehicles Template -->
     <ng-template #noVehicles>
       <p class="text-danger" *ngIf="!loading">No vehicles found.</p>

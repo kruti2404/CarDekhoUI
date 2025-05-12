@@ -7,7 +7,7 @@
   font-weight: bold;
   color: #1c4b71;
   text-align: left;
-  margin: 85px auto 0 auto;
+  margin: 0 auto 0 auto;
 }
 /* Rating section */
 .rating {
@@ -64,4 +64,8 @@ button:hover {
 ::ng-deep .mat-mdc-paginator-container {
   background: linear-gradient(135deg, #f2f9ff, #e0ecf4);
   color: #1c4b71;
+}
+
+::ng-deep .example-full-width{
+  width: 100%;
 }
