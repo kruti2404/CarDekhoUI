@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { routes } from '../../app.routes';
+
 @Component({
   standalone:true,
   selector: 'app-get-vehicle-by-id',
@@ -15,7 +17,7 @@ export class GetVehicleByIdComponent {
   constructor(private router: Router) { }
   Details: any = () => {
     console.log("Console the value ", this.Id);
-    this.router.navigate(['/Details', this.Id]);
+    this.router.navigate(['/details', this.Id]);
   }
 }
 

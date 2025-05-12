@@ -3,11 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../../environments/environment';
-import { Car } from '../../shared/models/car.module'; // Used for Add/Update payloads
+import { Car } from '../../shared/models/car.module'; 
 import { FilterApiResponse, InitialLoadData, VehicleMutationResponse } from '../../shared/models/FilterCriteria.module';
 
-// Define this interface if your API returns this structure for vehicle details
-// Or ensure your Car model in car.module.ts matches this if you want to use Observable<Car>
 export interface VehicleDetailsResponse {
   id: string | number;
   name: string;
@@ -18,10 +16,8 @@ export interface VehicleDetailsResponse {
   quantity: number;
   brandName: string;
   categoryName: string;
-  coloursNames: string; // Comma-separated string
+  coloursNames: string;
 }
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -31,49 +27,25 @@ export class CardekhoserviceService {
 
   constructor(private http: HttpClient) { }
 
-  /**
-   * Fetches details for a specific vehicle.
-   * @param id The ID of the vehicle.
-   * @returns Observable<VehicleDetailsResponse> (or Observable<Car> if Car model matches the response structure)
-   */
-  public getVehicleDetails(id: number): Observable<VehicleDetailsResponse> { // Adjusted return type
+  public getVehicleDetails(id: number): Observable<VehicleDetailsResponse> { 
     return this.http.get<VehicleDetailsResponse>(`${this.apiUrl}/vehicles/GetVehicles/${id}`);
   }
 
-  /**
-   * Loads initial data needed for filters (categories, brands, colours).
-   * @returns Observable<InitialLoadData>
-   */
   public loadInitialFilterData(): Observable<InitialLoadData> {
     return this.http.get<InitialLoadData>(`${this.apiUrl}/Home/loadData`);
   }
 
-  /**
-   * Adds a new vehicle.
-   * @param formData Vehicle data including potential file uploads.
-   * @returns Observable<VehicleMutationResponse>
-   */
-  public addVehicle(formData: FormData): Observable<VehicleMutationResponse> {
+   public addVehicle(formData: FormData): Observable<VehicleMutationResponse> {
     console.log('Adding vehicle via service:', formData);
     return this.http.post<VehicleMutationResponse>(`${this.apiUrl}/Home/AddVehicle`, formData);
   }
 
-  /**
-   * Edits an existing vehicle.
-   * @param formData Vehicle data including potential file uploads. ID should be part of FormData.
-   * @returns Observable<VehicleMutationResponse>
-   */
-  public updateVehicle(formData: FormData): Observable<VehicleMutationResponse> {
+    public updateVehicle(formData: FormData): Observable<VehicleMutationResponse> {
     console.log('Updating vehicle via service:', formData);
     return this.http.post<VehicleMutationResponse>(`${this.apiUrl}/Home/Editvehicle`, formData);
   }
 
-  /**
-   * Filters vehicles based on provided criteria.
-   * (Content of this method remains the same as in your provided code)
-   * @returns Observable<FilterApiResponse>
-   */
-  public filterVehicles(
+   public filterVehicles(
     category: string | null,
     brands: string[],
     colours: string[],
