@@ -37,7 +37,7 @@ export class CardekhoserviceService {
     console.log(formdata);
     return this.http.post(`${this.ApiUrl}/Home/Editvehicle`,formdata);
   }
-  public Filter(category: string, Brand: string[], Colours: string[], Rating: number, MinPrice: number, MaxPrice: number): Observable<any> {
+  public Filter(category: string, Brand: string[], Colours: string[], Rating: number, MinPrice: number, MaxPrice: number, PageSize : number, PageNumber: number): Observable<any> {
     let params = new HttpParams()
       .set("category", category)
       .set("Rating", Rating.toString())
@@ -45,6 +45,8 @@ export class CardekhoserviceService {
       .set("MaxPrice", MaxPrice.toString())
       .set("Brand", Brand.join(","))
       .set("Colours", Colours.join(","))
+      .set("PageSize", PageSize.toString())
+      .set("PageNumber", PageNumber.toString())
     return this.http.get(`${this.ApiUrl}/vehicles/Filter`, { params });
   }
 

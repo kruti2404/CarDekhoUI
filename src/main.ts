@@ -14,14 +14,8 @@ import { MainLayoutComponent } from './app/layouts/main-layout/main-layout.compo
 
 
 const routes: Routes = [
-    {
-        path: '',
-        component: MainLayoutComponent,
-        children: [
-            { path: '', component: HomeComponent },
-        ]
-    },
-    { path: "", component: MainLayoutComponent },
+
+    { path: '', component: HomeComponent },
     { path: 'Details/:id', component: VehicleDetailsComponent },
     { path: 'GetVehicles', component: GetVehicleByIdComponent },
     { path: 'Filters', component: FormfilterpartialComponent },

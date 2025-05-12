@@ -10,13 +10,14 @@ import { Options } from 'ng5-slider';
 import { RouterLink } from '@angular/router';
 import { CardekhoserviceService } from '../../core/services/cardekhoservice.service';
 import { SharedSliderModule } from '../../shared/models/shared-slider.module';
-
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 
 @Component({
-  standalone:true,
+  standalone: true,
   selector: 'app-formfilterpartial',
   imports: [
     CommonModule,
+    MatPaginatorModule,
     MatSelectModule,
     MatFormFieldModule,
     MatSlideToggleModule,
@@ -26,7 +27,7 @@ import { SharedSliderModule } from '../../shared/models/shared-slider.module';
     FormsModule,
     SharedSliderModule,
     RouterLink
-    ],
+  ],
   templateUrl: './formfilterpartial.component.html',
   styleUrls: ['./formfilterpartial.component.css'],
 })
@@ -39,10 +40,11 @@ export class FormfilterpartialComponent implements OnInit {
   Brands: any[] = [];
   ColoursList: any[] = [];
   selectedCategory?: string;
-
   value: number = 200000;
   highValue: number = 200000000;
-
+  TotalResult: number = 0;
+  PageSize: number = 10;
+  PageNumber: number = 1
   options: Options = {
     floor: 200000,
     ceil: 200000000
@@ -77,7 +79,9 @@ export class FormfilterpartialComponent implements OnInit {
         colours,
         rating,
         selectedRange[0],
-        selectedRange[1]
+        selectedRange[1],
+        this.PageSize ,
+        this.PageNumber +1,
       )
       .subscribe({
         next: (value) => {
@@ -87,6 +91,8 @@ export class FormfilterpartialComponent implements OnInit {
           this.Brands = value.brands;
           this.ColoursList = value.colours;
           this.loading = false;
+          console.log("Vehicles records are ", value.result.totalPages);
+          this.TotalResult = value.result.totalPages;
         },
         error: (error) => {
           console.error('Error fetching vehicle details:', error);
@@ -113,4 +119,15 @@ export class FormfilterpartialComponent implements OnInit {
 
     this.loadData();
   }
+
+  Pagination(event: PageEvent): void {
+    console.log("Pagination");
+    console.log("Page Size", event.pageSize);
+    console.log("Page Number", event.pageIndex);
+    console.log("Page Number", event.length);
+    this.PageSize = event.pageSize;
+    this.PageNumber= event.pageIndex;
+    this.loadData();
+  }
+
 }

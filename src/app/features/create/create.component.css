@@ -5,11 +5,10 @@
   padding: 2rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   max-width: 1000px;
-  margin: 2rem auto;
   font-weight: bold;
   color: #1c4b71;
   text-align: left;
-  margin-bottom: 2rem;
+  margin: 100px auto 0 auto;
 }
 
 .Formcontainer h2 {
@@ -19,7 +18,6 @@
   margin-left: 30%;
   margin-right: 25%;
 }
-
 
 /* Input groups */
 .group {
@@ -155,23 +153,28 @@ textarea:focus {
 
 /* Action button (close button) */
 ::ng-deep .custom-snackbar .mat-mdc-snack-bar-action {
-  color: #121111 !important;  /* Dark text color */
+  color: #121111 !important; /* Dark text color */
   font-weight: bold;
   font-size: 20px;
-  background-color: transparent !important;  /* Transparent background */
-  border: 2px solid #000000;  /* Black border */
-  border-radius: 4px;  /* Rounded corners */
+  background-color: transparent !important; /* Transparent background */
+  border: 2px solid #000000; /* Black border */
+  border-radius: 4px; /* Rounded corners */
   padding: 8px 12px;
   margin-left: 16px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;  /* Smooth transition for hover effect */
-  align-self: center;  /* Vertically center the button */
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition for hover effect */
+  align-self: center; /* Vertically center the button */
 }
 
 /* Action button hover effect */
 ::ng-deep .custom-snackbar .mat-mdc-snack-bar-action:hover {
-  background-color: rgba(255, 255, 255, 0.1) !important;  /* Slight background on hover */
-  transform: scale(1.05);  /* Slight scaling effect on hover */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.1
+  ) !important; /* Slight background on hover */
+  transform: scale(1.05); /* Slight scaling effect on hover */
 }
 
 /* Snackbar label styling */

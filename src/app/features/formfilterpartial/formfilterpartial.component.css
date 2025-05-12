@@ -1,3 +1,14 @@
+.Formcontainer {
+  background: linear-gradient(135deg, #f2f9ff, #e0ecf4);
+  border-radius: 1.2rem;
+  padding: 2rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  max-width: 1400px;
+  font-weight: bold;
+  color: #1c4b71;
+  text-align: left;
+  margin: 85px auto 0 auto;
+}
 /* Rating section */
 .rating {
   width: fit-content;
@@ -10,16 +21,6 @@
 ::ng-deep p-rating {
   --p-rating-icon-size: 2rem;
   --p-rating-gap: 10px;
-}
-
-/* Reduce form spacing */
-.Formcontainer {
-  background-color: #f8f9fa;
-  border-radius: 1rem;
-  padding: 1.5rem;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  max-width: 1000px;
-  margin: auto;
 }
 
 /* Remove excess vertical spacing */
@@ -58,4 +59,9 @@ button {
 button:hover {
   background-color: #0056b3;
   cursor: pointer;
+}
+
+::ng-deep .mat-mdc-paginator-container {
+  background: linear-gradient(135deg, #f2f9ff, #e0ecf4);
+  color: #1c4b71;
 }

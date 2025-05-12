@@ -1,4 +1,4 @@
-<div class="Formcontainer filter-form-container my-4 p-4 rounded shadow-sm">
+<div class="Formcontainer filter-form-container rounded shadow-sm">
   <h2 class="filter-title mb-4">Filters Option</h2>
   <!-- Filter Form -->
   <form [formGroup]="form">
@@ -56,6 +56,16 @@
       </div>
     </div>
   </form>
+
+  <!-- Pagination -->
+<mat-paginator [length]="TotalResult"
+              [pageSize]="PageSize"
+              [pageIndex]="PageNumber"
+              [pageSizeOptions]="[5, 10, 20, 40]"
+              aria-label="Select page"
+              (page)="Pagination($event)"
+              >
+</mat-paginator>
 
 </div>
 <div>
