@@ -88,6 +88,6 @@ export class CardekhoserviceService {
     }
 
     console.log("Filtering with Params:", params.toString());
-    return this.http.get<FilterApiResponse>(`${this.apiUrl}/vehicles/Filter`, { params });
+    return this.http.get<FilterApiResponse>(`${this.apiUrl}/api/vehicles/Filter`, { params });
   }
 }

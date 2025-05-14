@@ -5,7 +5,9 @@ import { FormfilterpartialComponent } from './features/formfilterpartial/formfil
 import { HomeComponent } from './features/home/home.component';
 import { VehicleDetailsComponent } from './features/vehicle-details/vehicle-details.component';
 import { CreateComponent } from './features/create/create.component';
-import { LoginComponent } from './features/login/login.component';
+import { LoginComponent } from './Authentication/login/login.component';
+import { RegisterComponent } from './Authentication/register/register.component';
+import { ConfirmEmailComponent } from './Authentication/confirm-email/confirm-email.component';
 
 export const routes: Routes = [
 
@@ -15,5 +17,7 @@ export const routes: Routes = [
     { path: 'Filters', component: FormfilterpartialComponent },
     { path: 'create', component: CreateComponent },
     { path: 'Edit/:id', component: EditComponent },
-    { path: 'login', component: LoginComponent }
+    { path: 'login', component: LoginComponent },
+    { path: 'register', component: RegisterComponent },
+    { path: 'confirmemail', component: ConfirmEmailComponent },
 ]

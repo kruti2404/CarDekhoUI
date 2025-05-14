@@ -41,6 +41,7 @@
     "mdb-angular-ui-kit": "^8.0.0",
     "ng-multiselect-dropdown": "^1.0.0",
     "ng5-slider": "^1.2.6",
+    "ngx-bootstrap": "^19.0.2",
     "ngx-toastr": "^19.0.0",
     "primeicons": "^7.0.0",
     "primeng": "^19.1.2",
