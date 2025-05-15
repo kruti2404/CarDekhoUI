@@ -3,10 +3,10 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { user } from '../../shared/models/Authentication/User';
-import { take } from 'rxjs';
 import { DOCUMENT } from '@angular/common';
 import { SharedService } from '../../core/services/shared.service';
+import { environment } from '../../../environments/environment';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
   submitted = false;
   returnUrl: string | null = null;
+  private userSubscription: Subscription | undefined;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,40 +38,25 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    this.activatedRoute.queryParamMap.subscribe(params => {
-      this.returnUrl = params.get('returnUrl');
-      console.log('Return URL:', this.returnUrl);
-    });
-
-    this.authService.user$.pipe(take(1)).subscribe({
-      next: (user: user | null) => {
-        if (user) {
-          this.router.navigateByUrl('/');
-        }
-      }
-    });
+    
   }
 
-
   login() {
+    console.log("loging clicked");
     this.submitted = true;
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
-        next: _ => {
-          console.log("Logged in ", _);
-          if (this.returnUrl) {
-            console.log("Return Url is ", this.returnUrl)
-            this.router.navigateByUrl(this.returnUrl);
-          } else {
+        next: (value) => {
+          console.log("Logged in ", value);
+          this.sharedService.showNotification(true, "Success", "You have successfully logged in");
 
-            this.router.navigateByUrl('/');
-          }
-
+          this.router.navigateByUrl('/Filters');
+          // this.authService.
         },
-        error: (err) => { 
-        console.log("Error", err);
-        this.sharedService.showNotification(false, "Failed", err.error);
-      },
+        error: (err) => {
+          console.log("Error", err);
+          this.sharedService.showNotification(false, "Failed", err.error);
+        },
 
       });
     }

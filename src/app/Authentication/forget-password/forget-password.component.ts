@@ -1,17 +1,18 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { Form, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { SharedService } from '../../core/services/shared.service';
+import { ValidationMessageComponent } from '../../core/Components/validation-message/validation-message.component';
 
 @Component({
   selector: 'app-forget-password',
-  imports: [ReactiveFormsModule, CommonModule,],
+  imports: [ReactiveFormsModule, CommonModule, ValidationMessageComponent,],
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.css'
 })
-export class ForgetPasswordComponent {
+export class ForgetPasswordComponent implements OnInit {
 
   emailForm: FormGroup = new FormGroup({});
   submitted = false;
@@ -21,17 +22,27 @@ export class ForgetPasswordComponent {
   constructor(
     private router: Router,
     private authService: AuthenticationService,
-    private sharedService: SharedService
+    private sharedService: SharedService,
+    private formBuilder: FormBuilder
   ) { }
 
+  ngOnInit(): void {
+    this.emailForm = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.pattern('^\\w+@[a-zA-Z_]+?\\.[a-zA-Z]{2,3}$')]],
+    })
+  }
+
   sendEmail() {
+    console.log("Submited the request");
     this.submitted = true;
     this.errorMessages = [];
+    console.log("Request is being sent for the forgot password or mail ");
 
     this.authService.forgotUsernameOrPassword(this.emailForm.get('email')?.value).subscribe({
       next: (response: any) => {
-        this.sharedService.showNotification(true, response.title, response.message);
-        this.router.navigateByUrl('/account/login');
+        console.log("Next is executed ", response);
+        this.sharedService.showNotification(true, response.value.title, response.value.message);
+        this.router.navigateByUrl('/login');
       }, error: error => {
         if (error.error.errors) {
           this.errorMessages = error.error.errors;
@@ -44,7 +55,7 @@ export class ForgetPasswordComponent {
   }
 
   cancel() {
-    this.router.navigateByUrl('/account/login');
+    this.router.navigateByUrl('/login');
   }
 
 

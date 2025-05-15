@@ -7,12 +7,14 @@ import { CommonModule } from '@angular/common';
 import { RatingModule } from 'primeng/rating';
 import { MatSliderModule } from '@angular/material/slider';
 import { Options } from 'ng5-slider';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CardekhoserviceService } from '../../core/services/cardekhoservice.service';
 import { SharedSliderModule } from '../../shared/models/shared-slider.module';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatInputModule } from '@angular/material/input';
 import { Sort, MatSortModule, SortDirection, } from '@Angular/material/sort'
+import { AuthenticationService } from '../../core/services/authentication.service';
+import { user } from '../../shared/models/Authentication/User';
 
 @Component({
   standalone: true,
@@ -30,7 +32,7 @@ import { Sort, MatSortModule, SortDirection, } from '@Angular/material/sort'
     ReactiveFormsModule,
     FormsModule,
     SharedSliderModule,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './formfilterpartial.component.html',
   styleUrls: ['./formfilterpartial.component.css'],
@@ -38,7 +40,7 @@ import { Sort, MatSortModule, SortDirection, } from '@Angular/material/sort'
 export class FormfilterpartialComponent implements OnInit {
   form: FormGroup = new FormGroup({});
   loading: boolean = false;
-
+  returnUrl: string | [] = '';
   vehicles: any[] = [];
   categories: any[] = [];
   Brands: any[] = [];
@@ -56,9 +58,17 @@ export class FormfilterpartialComponent implements OnInit {
     ceil: 200000000
   };
 
+  constructor(
+    private authService: AuthenticationService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+
+  ) { }
+
   services = inject(CardekhoserviceService);
 
   ngOnInit(): void {
+    console.log("OnInit of form filter page ")
     this.form = new FormGroup({
       selectedBrand: new FormControl([]),
       selectedCategory: new FormControl(''),
@@ -68,6 +78,19 @@ export class FormfilterpartialComponent implements OnInit {
       Search: new FormControl('')
     });
 
+    
+    this.authService.user$.pipe().subscribe({
+      next: (user: user | null) => {
+        console.log("User in Filter page ", user);
+      },
+      error(err) {
+        console.log("Error is ", err.error);
+      },
+      complete() {
+        console.log("Completed");
+      },
+    });
+    
     this.loadData();
   }
 

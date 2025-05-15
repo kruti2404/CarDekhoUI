@@ -2,5 +2,5 @@ export interface user {
      firstName: string;
     lastName: string;
     jwt: string;
-    // user: UserDetailsDto;
+    Role : string    
 }
