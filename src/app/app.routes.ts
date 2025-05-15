@@ -10,22 +10,42 @@ import { ForgetPasswordComponent } from './Authentication/forget-password/forget
 import { ResetPasswordComponent } from './Authentication/reset-password/reset-password.component';
 import { LoginComponent } from './Authentication/login/login.component';
 import { LoginGuard } from './core/Guards/Login.guard';
+import { roleGuard } from './core/Guards/role.guard';
 
 export const routes: Routes = [
 
     { path: '', component: HomeComponent },
-    { path: 'details/:id', component: VehicleDetailsComponent },
+    {
+        path: 'details/:id',
+        component: VehicleDetailsComponent,
+        canActivate: [roleGuard],
+        data: {
+            roles: []
+        }
+    },
     { path: 'GetVehicles', component: GetVehicleByIdComponent },
     {
         path: 'Filters',
         loadComponent: () => import('./features/formfilterpartial/formfilterpartial.component').then(mod => mod.FormfilterpartialComponent),
+        canActivate: [roleGuard],
+        data: {
+            roles: ["User"]
+        }
     },
-    { path: 'create', component: CreateComponent },
+    {
+        path: 'create',
+        component: CreateComponent,
+        canActivate: [roleGuard],
+        data: {
+            roles: ["Admin"]
+        }
+    },
     { path: 'Edit/:id', component: EditComponent },
     {
         path: 'login',
         component: LoginComponent,
         canActivate: [LoginGuard]
+
     },
     { path: 'register', component: RegisterComponent },
     { path: 'confirmemail', component: ConfirmEmailComponent },

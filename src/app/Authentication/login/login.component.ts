@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           console.log("Logged in ", value);
           this.sharedService.showNotification(true, "Success", "You have successfully logged in");
 
-          this.router.navigateByUrl('/Filters');
+          this.router.navigateByUrl('/');
           // this.authService.
         },
         error: (err) => {

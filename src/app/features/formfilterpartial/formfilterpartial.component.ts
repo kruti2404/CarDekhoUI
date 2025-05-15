@@ -59,10 +59,7 @@ export class FormfilterpartialComponent implements OnInit {
   };
 
   constructor(
-    private authService: AuthenticationService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router,
-
+    
   ) { }
 
   services = inject(CardekhoserviceService);
@@ -77,20 +74,7 @@ export class FormfilterpartialComponent implements OnInit {
       Range: new FormControl([200000, 200000000]),
       Search: new FormControl('')
     });
-
-    
-    this.authService.user$.pipe().subscribe({
-      next: (user: user | null) => {
-        console.log("User in Filter page ", user);
-      },
-      error(err) {
-        console.log("Error is ", err.error);
-      },
-      complete() {
-        console.log("Completed");
-      },
-    });
-    
+  
     this.loadData();
   }
 
