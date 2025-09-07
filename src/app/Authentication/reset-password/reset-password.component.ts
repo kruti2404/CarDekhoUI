@@ -4,12 +4,12 @@ import { AuthenticationService } from '../../core/services/authentication.servic
 import { SharedService } from '../../core/services/shared.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ResetPassword } from '../../shared/models/Authentication/ResetPassword';
-import { ValidationMessageComponent } from '../../core/Components/validation-message/validation-message.component';
+// import { ValidationMessageComponent } from '../../core/Components/validation-message/validation-message.component';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-reset-password',
-  imports: [ValidationMessageComponent, ReactiveFormsModule, CommonModule],
+  imports: [ ReactiveFormsModule, CommonModule],
   templateUrl: './reset-password.component.html',
   styleUrl: './reset-password.component.css'
 })

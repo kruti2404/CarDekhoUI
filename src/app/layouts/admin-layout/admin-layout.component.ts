@@ -4,12 +4,12 @@ import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from "../../shared/components/sidebar/sidebar.component";
 
 @Component({
-  selector: 'app-main-layout',
+  selector: 'app-admin-layout',
   imports: [NavabrComponent, RouterOutlet, SidebarComponent],
-  templateUrl: './main-layout.component.html',
-  styleUrl: './main-layout.component.css'
+  templateUrl: './admin-layout.component.html',
+  styleUrl: './admin-layout.component.css',
 })
-export class MainLayoutComponent {
+export class AdminLayoutComponent {
   title = 'CarDekho';
   public sidebarShow: boolean = false;
 }

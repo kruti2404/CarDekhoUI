@@ -51,7 +51,7 @@ export class FormfilterpartialComponent implements OnInit {
   TotalResult: number = 0;
   PageSize: number = 10;
   PageNumber: number = 0;
-  SortColumn: string = '';
+  SortColumn: string = 'Id';
   SortDirection: SortDirection = '';
   options: Options = {
     floor: 200000,
@@ -71,7 +71,7 @@ export class FormfilterpartialComponent implements OnInit {
       selectedCategory: new FormControl(''),
       Colours: new FormControl([]),
       Rating: new FormControl(''),
-      Range: new FormControl([200000, 200000000]),
+      Range : new FormControl([200000, 200000000]),
       Search: new FormControl('')
     });
   

@@ -23,9 +23,12 @@
                 "glob": "**/*",
                 "input": "public"
               },
-                "src/assets"
+              "src/assets"
             ],
             "styles": [
+              "node_modules/@primeng/themes/lara-light-blue/theme.css", 
+              "node_modules/primeng/resources/primeng.css",
+              "node_modules/primeicons/primeicons.css",
               "@angular/material/prebuilt-themes/azure-blue.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/css-star-rating/css/star-rating.css",

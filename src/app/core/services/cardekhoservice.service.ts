@@ -28,7 +28,7 @@ export class CardekhoserviceService {
   constructor(private http: HttpClient) { }
 
   public getVehicleDetails(id: number): Observable<VehicleDetailsResponse> { 
-    return this.http.get<VehicleDetailsResponse>(`${this.apiUrl}/vehicles/GetVehicles/${id}`);
+    return this.http.get<VehicleDetailsResponse>(`${this.apiUrl}/api/Vehicles/Details/${id}`);
   }
 
   public loadInitialFilterData(): Observable<InitialLoadData> {
@@ -88,6 +88,6 @@ export class CardekhoserviceService {
     }
 
     console.log("Filtering with Params:", params.toString());
-    return this.http.get<FilterApiResponse>(`${this.apiUrl}/api/vehicles/Filter`, { params });
+    return this.http.get<FilterApiResponse>(`${this.apiUrl}/api/Vehicles/Filter`, { params });
   }
 }

@@ -23,6 +23,7 @@ export class AuthenticationService {
     console.log("Rehydrating the Authentication service to set the user observable to the latest user")
     const user = JSON.parse(userString);
     this.setUser(user); 
+    this.Loggedin = true;
   }
 }
 
@@ -63,6 +64,15 @@ export class AuthenticationService {
     console.log("Set user is called and Setting the user to the User observable")
     localStorage.setItem(environment.userKey, JSON.stringify(user));
     this.userSource.next(user);
+  }
+
+  getToken(){
+    const userString = localStorage.getItem(environment.userKey);
+    if (userString) {
+      const user = JSON.parse(userString);
+      return user.jwt;
+    }
+    return null;
   }
 
 }

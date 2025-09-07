@@ -1,34 +1,32 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+import { Router, RouterLink } from '@angular/router';
 import { SharedService } from '../../core/services/shared.service';
-import { environment } from '../../../environments/environment';
-import { Subscription } from 'rxjs';
-
+import { MessageService } from 'primeng/api';
+import { Toast } from 'primeng/toast';
+// import { ToastStyle } from 'primeng/toast/style/toaststyle.d.ts';
 
 @Component({
   standalone: true,
   selector: 'app-login',
   templateUrl: './login.component.html',
-  imports: [ReactiveFormsModule, CommonModule, RouterLink],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink,Toast],
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
   submitted = false;
   returnUrl: string | null = null;
-  private userSubscription: Subscription | undefined;
+
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthenticationService,
-    private activatedRoute: ActivatedRoute,
     private sharedService: SharedService,
     private router: Router,
-    @Inject(DOCUMENT) private _document: Document
+    private messageService: MessageService
   ) { }
 
 
@@ -38,7 +36,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required],
     });
 
-    
+
   }
 
   login() {
@@ -48,9 +46,10 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe({
         next: (value) => {
           console.log("Logged in ", value);
-          this.sharedService.showNotification(true, "Success", "You have successfully logged in");
+          this.messageService.add({ severity: 'info', summary: 'Info', detail: 'You have successfully logged in', life: 30000 });
+          // this.sharedService.showNotification(true, "Success", "You have successfully logged in");
 
-          this.router.navigateByUrl('/');
+          this.router.navigateByUrl('/admin');
           // this.authService.
         },
         error: (err) => {

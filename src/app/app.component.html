@@ -1,1 +1,2 @@
-<app-main-layout></app-main-layout>
+<app-auth-layout *ngIf="!loginstatus"> </app-auth-layout>
+<app-admin-layout *ngIf="loginstatus"></app-admin-layout>

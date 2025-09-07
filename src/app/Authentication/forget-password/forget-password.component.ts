@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { Form, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {  FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../core/services/authentication.service';
 import { SharedService } from '../../core/services/shared.service';
-import { ValidationMessageComponent } from '../../core/Components/validation-message/validation-message.component';
+// import { ValidationMessageComponent } from '../../core/Components/validation-message/validation-message.component';
 
 @Component({
   selector: 'app-forget-password',
-  imports: [ReactiveFormsModule, CommonModule, ValidationMessageComponent,],
+  imports: [ReactiveFormsModule, CommonModule,],
   templateUrl: './forget-password.component.html',
   styleUrl: './forget-password.component.css'
 })
